@@ -9,8 +9,8 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #fdfbfb, #ebedee);
-  color: #333;
+  background: linear-gradient(135deg, #8c24a1, #166993);
+  color: #f3f3f3;
   line-height: 1.6;
   min-height: 100vh;
 
@@ -27,7 +27,7 @@ body {
   width: 100%;
   max-width: 900px;
   padding: 25px;
-  background-color: #ffffffcc; /* Slight transparency for modern look */
+  background-color: #0f7385cc; /* Slight transparency for modern look */
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
