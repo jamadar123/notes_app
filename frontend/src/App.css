@@ -1,200 +1,239 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-/* Reset */
+/* ==============================
+   Reset & Base Styles
+============================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Body */
 body {
-  background: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+
+  /* Center content horizontally and vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Main Container */
+/* ==============================
+   Container
+============================== */
 .container {
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 900px;
+  padding: 25px;
+  background-color: #ffffffcc; /* Slight transparency for modern look */
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+
+  /* Center content inside the container if needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Heading */
 h1 {
   text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+  color: #2c3e50;
+  margin-bottom: 1rem;
 }
 
-/* Input Section */
+/* ==============================
+   Input Group
+============================== */
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
-.input-group input,
-.input-group textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
+input,
+textarea {
+  padding: 15px;
+  font-size: 16px;
+  border: 2px solid #dcdcdc;
+  border-radius: 10px;
+  width: 100%;
+  transition: all 0.2s ease-in-out;
   outline: none;
-  transition: 0.2s;
 }
 
-.input-group input:focus,
-.input-group textarea:focus {
-  border-color: #4a90e2;
+input:focus,
+textarea:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
 }
 
-.input-group textarea {
+textarea {
+  min-height: 100px;
   resize: vertical;
-  min-height: 80px;
 }
 
-/* Add Button */
-.input-group button {
-  padding: 10px;
+/* ==============================
+   Buttons
+============================== */
+button {
+  padding: 12px 25px;
+  font-size: 16px;
   border: none;
-  border-radius: 6px;
-  background: #4a90e2;
-  color: white;
-  font-size: 14px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.2s;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Add Note Button */
+.input-group button {
+  background-color: #3498db;
 }
 
 .input-group button:hover {
-  background: #357bd8;
+  background-color: #2980b9;
 }
 
-/* Notes List */
-.notes-list {
+/* ==============================
+   Notes List
+============================== */
+ul {
   list-style: none;
+  padding: 0;
+  width: 100%;
 }
 
-.note-item {
-  padding: 15px;
-  margin-bottom: 12px;
-  border-radius: 6px;
-  background: #f9fafc;
-  border: 1px solid #e3e6eb;
+li {
+  background: linear-gradient(145deg, #f7f9fc, #e6edf3);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
-.note-item h3 {
-  margin-bottom: 6px;
-  color: #222;
+li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.note-item p {
-  color: #555;
-  font-size: 14px;
+li h3 {
   margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #2c3e50;
 }
 
-/* Action Buttons */
+li p {
+  font-size: 1rem;
+  color: #555;
+  white-space: pre-wrap; /* Preserve line breaks in notes */
+}
+
+/* ==============================
+   Actions (Edit / Delete)
+============================== */
 .actions {
   display: flex;
   gap: 10px;
+  margin-top: 15px;
+  width: 100%;
 }
 
-.btn-edit,
-.btn-delete {
-  padding: 6px 10px;
-  border: none;
-  border-radius: 4px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: 0.2s;
+.actions button {
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 8px;
+  flex: 1;
+  transition: all 0.2s ease;
 }
 
-.btn-edit {
-  background: #ffc107;
-  color: #000;
+.actions button:first-child {
+  background-color: #f39c12;
 }
 
-.btn-edit:hover {
-  background: #e0a800;
+.actions button:first-child:hover {
+  background-color: #e67e22;
 }
 
-.btn-delete {
-  background: #dc3545;
-  color: #fff;
+.actions button:last-child {
+  background-color: #e74c3c;
 }
 
-.btn-delete:hover {
-  background: #b02a37;
+.actions button:last-child:hover {
+  background-color: #c0392b;
 }
 
-/* Error Message */
+/* ==============================
+   Loading & Error
+============================== */
+.loading {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.5rem;
+  color: #3498db;
+}
+
 .error-message {
-  background: #ffe0e0;
-  color: #b00020;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 15px;
+  background-color: #ffe6e6;
+  color: #c0392b;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 500;
 }
 
 .error-message button {
   background: transparent;
+  color: #c0392b;
   border: none;
   font-weight: bold;
   cursor: pointer;
-  color: #b00020;
+  font-size: 1rem;
 }
 
-/* Loading */
-.loading {
-  text-align: center;
-  margin-top: 100px;
+/* ==============================
+   Responsive
+============================== */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  li {
+    padding: 15px;
+  }
+
+  input,
+  textarea {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .actions button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
 }
