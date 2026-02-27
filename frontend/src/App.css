@@ -9,7 +9,7 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #8c24a1, #166993);
+  background: linear-gradient(135deg, #c73de2, #2a9dd6);
   color: #f3f3f3;
   line-height: 1.6;
   min-height: 100vh;
@@ -27,7 +27,7 @@ body {
   width: 100%;
   max-width: 900px;
   padding: 25px;
-  background-color: #0f7385cc; /* Slight transparency for modern look */
+  background-color: #53ddf5cc; /* Slight transparency for modern look */
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
@@ -69,7 +69,7 @@ textarea {
 input:focus,
 textarea:focus {
   border-color: #3498db;
-  box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+  box-shadow: 0 0 10px rgba(36, 138, 206, 0.3);
 }
 
 textarea {

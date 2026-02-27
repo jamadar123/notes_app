@@ -10,13 +10,31 @@ import cors from "cors";
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
+// CORS configuration
+const allowedOrigins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    // Add your production domain here when you have it
+];
+
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === "production") {
+            return callback(null, true);
+        } else {
+            return callback(new Error("Not allowed by CORS"));
+        }
+    }
 }));
+
+app.use(express.json());
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // ------------------
 // MongoDB Connection
@@ -57,11 +75,7 @@ const Note = mongoose.model("Note", noteSchema);
 // ROUTES
 // ------------------
 
-app.get("/", (req, res) => {
-    res.send("Notes API is running...");
-});
-
-// READ ALL
+// API READ ALL
 app.get("/api/notes", async (req, res) => {
     try {
         const notes = await Note.find().sort({ createdAt: -1 });
@@ -71,7 +85,7 @@ app.get("/api/notes", async (req, res) => {
     }
 });
 
-// CREATE
+// API CREATE
 app.post("/api/notes", async (req, res) => {
     try {
         const { title, content } = req.body;
@@ -92,7 +106,7 @@ app.post("/api/notes", async (req, res) => {
     }
 });
 
-// UPDATE
+// API UPDATE
 app.put("/api/notes/:id", async (req, res) => {
     try {
         const { title, content } = req.body;
@@ -124,7 +138,7 @@ app.put("/api/notes/:id", async (req, res) => {
     }
 });
 
-// DELETE
+// API DELETE
 app.delete("/api/notes/:id", async (req, res) => {
     try {
         const deleted = await Note.findByIdAndDelete(req.params.id);
@@ -140,10 +154,16 @@ app.delete("/api/notes/:id", async (req, res) => {
     }
 });
 
+// Catch-all route to serve React's index.html
+// Using a regex constant to avoid path-to-regexp parsing issues in Express 5
+app.get(/^(?!\/api).+/, (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+});
+
 // ------------------
 // SERVER START
 // ------------------
 
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });

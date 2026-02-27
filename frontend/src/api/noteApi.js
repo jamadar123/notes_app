@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api/notes";
+const BASE_URL = import.meta.env.VITE_API_URL || "/api/notes";
 
 const handleResponse = async (response) => {
     if (!response.ok) {
