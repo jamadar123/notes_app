@@ -1,239 +1,197 @@
 /* ==============================
    Reset & Base Styles
 ============================== */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Background */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #c73de2, #2a9dd6);
-  color: #f3f3f3;
-  line-height: 1.6;
   min-height: 100vh;
-
-  /* Center content horizontally and vertically */
+  background: linear-gradient(135deg, #667eea, #764ba2);
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
-/* ==============================
-   Container
-============================== */
+/* Main Container */
 .container {
   width: 100%;
-  max-width: 900px;
-  padding: 25px;
-  background-color: #53ddf5cc; /* Slight transparency for modern look */
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  max-width: 850px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  animation: fadeIn 0.6s ease-in-out;
+}
 
-  /* Center content inside the container if needed */
+/* Title */
+.container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Error Message */
+.error-message {
+  background: rgba(255, 0, 0, 0.15);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
 
-h1 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 1rem;
+.error-message button {
+  background: #ff4d4d;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
 }
 
-/* ==============================
-   Input Group
-============================== */
+/* Input Section */
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  margin-bottom: 30px;
+  gap: 12px;
+  margin-bottom: 25px;
 }
 
 input,
 textarea {
-  padding: 15px;
-  font-size: 16px;
-  border: 2px solid #dcdcdc;
+  padding: 12px 14px;
   border-radius: 10px;
-  width: 100%;
-  transition: all 0.2s ease-in-out;
+  border: none;
   outline: none;
+  font-size: 14px;
+  transition: 0.3s ease;
 }
 
 input:focus,
 textarea:focus {
-  border-color: #3498db;
-  box-shadow: 0 0 10px rgba(36, 138, 206, 0.3);
+  box-shadow: 0 0 0 2px #ffffff80;
 }
 
 textarea {
-  min-height: 100px;
-  resize: vertical;
+  resize: none;
+  min-height: 80px;
 }
 
-/* ==============================
-   Buttons
-============================== */
-button {
-  padding: 12px 25px;
-  font-size: 16px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  color: #fff;
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-button:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-/* Add Note Button */
+/* Add Button */
 .input-group button {
-  background-color: #3498db;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #ffffff;
+  color: #764ba2;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .input-group button:hover {
-  background-color: #2980b9;
+  transform: translateY(-2px);
+  background: #f1f1f1;
 }
 
-/* ==============================
-   Notes List
-============================== */
+/* Notes List */
 ul {
   list-style: none;
-  padding: 0;
-  width: 100%;
+  display: grid;
+  gap: 18px;
 }
 
+/* Individual Note */
 li {
-  background: linear-gradient(145deg, #f7f9fc, #e6edf3);
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 18px;
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  transition: 0.3s ease;
 }
 
 li:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 li h3 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-  color: #2c3e50;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 li p {
-  font-size: 1rem;
-  color: #555;
-  white-space: pre-wrap; /* Preserve line breaks in notes */
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 12px;
+  line-height: 1.4;
 }
 
-/* ==============================
-   Actions (Edit / Delete)
-============================== */
+/* Action Buttons */
 .actions {
   display: flex;
+  justify-content: flex-end;
   gap: 10px;
-  margin-top: 15px;
-  width: 100%;
 }
 
 .actions button {
-  padding: 8px 15px;
-  font-size: 14px;
+  border: none;
+  padding: 6px 12px;
   border-radius: 8px;
-  flex: 1;
-  transition: all 0.2s ease;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s ease;
 }
 
 .actions button:first-child {
-  background-color: #f39c12;
+  background: #ffffff;
+  color: #764ba2;
 }
 
 .actions button:first-child:hover {
-  background-color: #e67e22;
+  background: #eaeaea;
 }
 
 .actions button:last-child {
-  background-color: #e74c3c;
+  background: #ff4d4d;
+  color: white;
 }
 
 .actions button:last-child:hover {
-  background-color: #c0392b;
+  background: #e60000;
 }
 
-/* ==============================
-   Loading & Error
-============================== */
+/* Loading Screen */
 .loading {
-  text-align: center;
-  padding: 50px;
-  font-size: 1.5rem;
-  color: #3498db;
-}
-
-.error-message {
-  background-color: #ffe6e6;
-  color: #c0392b;
-  padding: 15px 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  min-height: 100vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  font-weight: 500;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
 }
 
-.error-message button {
-  background: transparent;
-  color: #c0392b;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-/* ==============================
-   Responsive
-============================== */
-@media (max-width: 600px) {
-  .container {
-    padding: 20px;
-    margin: 20px auto;
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
   }
-
-  li {
-    padding: 15px;
-  }
-
-  input,
-  textarea {
-    font-size: 14px;
-  }
-
-  button {
-    font-size: 14px;
-    padding: 10px 20px;
-  }
-
-  .actions button {
-    font-size: 12px;
-    padding: 8px 12px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
